@@ -1,0 +1,20 @@
+[project]
+name = "apple-notes-mcp"
+version = "0.1.0"
+description = "MCP server for reading and updating Apple Notes"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+]
+
+[project.scripts]
+apple-notes-mcp = "server:mcp.run"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

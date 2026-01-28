@@ -1,0 +1,7 @@
+debug/
+CLAUDE.md
+.DS_Store
+__pycache__/
+*.pyc
+.claude/
+*.egg-info/
