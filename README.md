@@ -47,7 +47,7 @@ pip install mcp
 Once configured, ask Claude:
 - "List my Apple Notes"
 - "Read my Shopping List note"
-- "Update my Shopping List to add eggs"
+- "Add eggs to my Shopping List note"
 
 ## Tools
 
@@ -56,16 +56,13 @@ Edit-only by design - intentionally omits create/delete to prevent accidental da
 | Tool | Purpose |
 |------|---------|
 | `list_notes` | List notes in a folder |
-| `read_note` | Read note as Markdown |
-| `read_note_html` | Read note as raw HTML |
-| `update_note` | Update note with Markdown |
-| `update_note_html` | Update note with HTML |
+| `read_note` | Read note HTML content |
+| `update_note` | Update note with HTML |
 
 ## Limitations
 
 - Cannot access checkbox state directly (stored separately from HTML)
 - Cannot detect currently selected note
-- Advanced CSS styling not supported
 
 ## Architecture
 
@@ -74,28 +71,11 @@ Edit-only by design - intentionally omits create/delete to prevent accidental da
 │   Claude    │ ◄──────────────► │  server.py  │ ◄──────────────► │ osascript │
 │   (Client)  │                   │  (FastMCP)  │                  │           │
 └─────────────┘                   └─────────────┘                  └─────┬─────┘
-                                        │                                │
-                                        │ HTML ◄─► Markdown              │ AppleScript
-                                        │ conversion                     ▼
+                                                                         │
+                                                                         │ AppleScript
+                                                                         ▼
                                                                    ┌───────────┐
                                                                    │   Apple   │
                                                                    │   Notes   │
                                                                    └───────────┘
 ```
-
-- **FastMCP Framework**: Handles MCP protocol communication via stdio
-- **AppleScript Execution**: All Notes operations go through `osascript`
-- **HTML/Markdown Conversion**: Bidirectional conversion for natural editing
-
-## HTML Format Reference
-
-Apple Notes stores content as HTML. The server converts to/from Markdown automatically.
-
-| HTML | Markdown |
-|------|----------|
-| `<li><strike>text</strike></li>` | `- [x] text` |
-| `<li>text</li>` | `- [ ] text` |
-| `<b>text</b>` | `**text**` |
-| `<i>text</i>` | `*text*` |
-| `<strike>text</strike>` | `~~text~~` |
-| `<div>text</div>` | `text\n` |
