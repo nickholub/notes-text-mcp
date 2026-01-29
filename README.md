@@ -71,8 +71,8 @@ pytest
 
 ## Limitations
 
-- Cannot access checkbox state directly (stored separately from HTML)
-- Cannot detect currently selected note
+- Updating a note may change its formatting (especially notes with checklists)
+- Checkbox state is stored separately from HTML and cannot be preserved on update
 
 ## Architecture
 
