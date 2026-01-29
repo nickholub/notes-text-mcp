@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
-Apple Notes MCP Server - Edit Only
+Apple Notes MCP Server
 
-A minimal MCP server that allows reading and updating Apple Notes.
-Does NOT support creating, deleting, or other destructive operations.
+A minimal MCP server that allows reading, creating, and updating Apple Notes.
+Does NOT support deleting or other destructive operations.
 """
 
 import subprocess
 from mcp.server.fastmcp import FastMCP
 
-mcp = FastMCP("apple-notes-edit")
+mcp = FastMCP("macos-notes-mcp")
 
 
 def run_osascript(script: str) -> str:
@@ -97,6 +97,34 @@ def update_note(name: str, html_content: str, folder: str = "Notes") -> str:
     '''
     run_osascript(script)
     return f"Updated note: {name}"
+
+
+@mcp.tool()
+def create_note(body: str, folder: str = "Notes") -> str:
+    """
+    Create a new note with HTML content.
+
+    The note's title will be derived from the first line of content.
+    Use a title div for best results: <div><b>Title</b></div>
+
+    Args:
+        body: The note content in HTML format
+        folder: The folder to create the note in (default: "Notes")
+
+    Returns:
+        Success message with the new note's name
+    """
+    escaped_html = body.replace('\\', '\\\\').replace('"', '\\"')
+
+    script = f'''
+    tell application "Notes"
+        set targetFolder to folder "{folder}"
+        set newNote to make new note at targetFolder with properties {{body:"{escaped_html}"}}
+        return name of newNote
+    end tell
+    '''
+    note_name = run_osascript(script)
+    return f"Created note: {note_name}"
 
 
 if __name__ == "__main__":
