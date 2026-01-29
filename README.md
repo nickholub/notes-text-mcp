@@ -1,6 +1,6 @@
 # macos-notes-mcp
 
-MCP server for reading and editing Apple Notes via Claude.
+Claude Apple Notes integration. An MCP server that lets Claude read, create, and edit your Apple Notes.
 
 ## Requirements
 
