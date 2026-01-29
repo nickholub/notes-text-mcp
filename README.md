@@ -61,6 +61,14 @@ Supports reading, creating, and updating notes. Intentionally omits delete to pr
 | `create_note` | Create a new note with HTML content |
 | `update_note` | Update note with HTML |
 
+## Testing
+
+```bash
+cd mcp_server
+pip install -e ".[dev]"
+pytest
+```
+
 ## Limitations
 
 - Cannot access checkbox state directly (stored separately from HTML)
