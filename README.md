@@ -48,15 +48,17 @@ Once configured, ask Claude:
 - "List my Apple Notes"
 - "Read my Shopping List note"
 - "Add eggs to my Shopping List note"
+- "Create a new note called Meeting Notes"
 
 ## Tools
 
-Edit-only by design - intentionally omits create/delete to prevent accidental data loss.
+Supports reading, creating, and updating notes. Intentionally omits delete to prevent accidental data loss.
 
 | Tool | Purpose |
 |------|---------|
 | `list_notes` | List notes in a folder |
 | `read_note` | Read note HTML content |
+| `create_note` | Create a new note with HTML content |
 | `update_note` | Update note with HTML |
 
 ## Limitations
