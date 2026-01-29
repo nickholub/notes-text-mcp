@@ -9,53 +9,42 @@ MCP server for reading and editing Apple Notes via Claude.
 - `mcp>=1.2.0` package
 - Automation permissions for osascript
 
-## Installation
+## Setup
 
-1. Clone the repository:
+1. Clone and install:
    ```bash
-   git clone https://github.com/yourusername/macos-notes-mcp.git
+   git clone https://github.com/nickholub/macos-notes-mcp.git
    cd macos-notes-mcp
-   ```
-
-2. Install dependencies:
-   ```bash
    pip install -e .
    ```
 
-3. Get the full path to the server (you'll need this for configuration):
-   ```bash
-   echo "$(pwd)/mcp_server/server.py"
+2. Configure your Claude client:
+
+   **Claude Code** - add to `~/.claude/mcp.json`:
+   ```json
+   {
+     "mcpServers": {
+       "apple-notes": {
+         "command": "python3",
+         "args": ["/path/to/macos-notes-mcp/mcp_server/server.py"]
+       }
+     }
+   }
    ```
 
-## Configuration
+   **Claude Desktop** - add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
+   ```json
+   {
+     "mcpServers": {
+       "apple-notes": {
+         "command": "python3",
+         "args": ["/path/to/macos-notes-mcp/mcp_server/server.py"]
+       }
+     }
+   }
+   ```
 
-Use the path from step 3 above in your configuration.
-
-**Claude Code** - add to `~/.claude/mcp.json` (global) or `.mcp.json` (project):
-```json
-{
-  "mcpServers": {
-    "apple-notes": {
-      "command": "python3",
-      "args": ["/Users/yourname/macos-notes-mcp/mcp_server/server.py"]
-    }
-  }
-}
-```
-
-**Claude Desktop** - add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
-```json
-{
-  "mcpServers": {
-    "apple-notes": {
-      "command": "python3",
-      "args": ["/Users/yourname/macos-notes-mcp/mcp_server/server.py"]
-    }
-  }
-}
-```
-
-**Note:** Replace `/Users/yourname/macos-notes-mcp` with the actual path where you cloned the repository.
+   To get the full path: `echo "$(pwd)/mcp_server/server.py"`
 
 ## Usage
 
