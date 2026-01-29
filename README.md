@@ -11,20 +11,33 @@ MCP server for reading and editing Apple Notes via Claude.
 
 ## Installation
 
-```bash
-cd mcp_server
-pip install mcp
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/macos-notes-mcp.git
+   cd macos-notes-mcp
+   ```
+
+2. Install dependencies:
+   ```bash
+   pip install -e .
+   ```
+
+3. Get the full path to the server (you'll need this for configuration):
+   ```bash
+   echo "$(pwd)/mcp_server/server.py"
+   ```
 
 ## Configuration
 
-**Claude Code** - add to `.mcp.json`:
+Use the path from step 3 above in your configuration.
+
+**Claude Code** - add to `~/.claude/mcp.json` (global) or `.mcp.json` (project):
 ```json
 {
   "mcpServers": {
     "apple-notes": {
       "command": "python3",
-      "args": ["/path/to/mcp_server/server.py"]
+      "args": ["/Users/yourname/macos-notes-mcp/mcp_server/server.py"]
     }
   }
 }
@@ -36,11 +49,13 @@ pip install mcp
   "mcpServers": {
     "apple-notes": {
       "command": "python3",
-      "args": ["/path/to/mcp_server/server.py"]
+      "args": ["/Users/yourname/macos-notes-mcp/mcp_server/server.py"]
     }
   }
 }
 ```
+
+**Note:** Replace `/Users/yourname/macos-notes-mcp` with the actual path where you cloned the repository.
 
 ## Usage
 
@@ -64,7 +79,6 @@ Supports reading, creating, and updating notes. Intentionally omits delete to pr
 ## Testing
 
 ```bash
-cd mcp_server
 pip install -e ".[dev]"
 pytest
 ```
