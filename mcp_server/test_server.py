@@ -90,3 +90,37 @@ class TestUpdateNote:
         server.update_note("TestNote", "<div>path\\to\\file</div>", "Notes")
         call_script = mock_osascript.call_args[0][0]
         assert "\\\\" in call_script
+
+
+class TestCreateNote:
+    """Tests for create_note tool."""
+
+    @patch("server.run_osascript")
+    def test_create_note(self, mock_osascript):
+        mock_osascript.return_value = "New Note"
+        result = server.create_note("<div><b>New Note</b></div>", "Notes")
+        assert "Created note: New Note" in result
+        call_script = mock_osascript.call_args[0][0]
+        assert "make new note" in call_script
+        assert "<div><b>New Note</b></div>" in call_script
+
+    @patch("server.run_osascript")
+    def test_create_note_custom_folder(self, mock_osascript):
+        mock_osascript.return_value = "Work Note"
+        server.create_note("<div>Content</div>", "Work")
+        call_script = mock_osascript.call_args[0][0]
+        assert 'folder "Work"' in call_script
+
+    @patch("server.run_osascript")
+    def test_create_note_escapes_quotes(self, mock_osascript):
+        mock_osascript.return_value = "Test"
+        server.create_note('<div>text with "quotes"</div>', "Notes")
+        call_script = mock_osascript.call_args[0][0]
+        assert '\\"' in call_script
+
+    @patch("server.run_osascript")
+    def test_create_note_escapes_backslash(self, mock_osascript):
+        mock_osascript.return_value = "Test"
+        server.create_note("<div>path\\to\\file</div>", "Notes")
+        call_script = mock_osascript.call_args[0][0]
+        assert "\\\\" in call_script
