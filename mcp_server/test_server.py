@@ -44,7 +44,7 @@ class TestListNotes:
     @patch("mcp_server.server.run_osascript")
     def test_list_notes_custom_folder(self, mock_osascript):
         mock_osascript.return_value = "Work Note"
-        result = server.list_notes("Work")
+        server.list_notes("Work")
         assert 'folder "Work"' in mock_osascript.call_args[0][0]
 
 
