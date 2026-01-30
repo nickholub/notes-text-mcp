@@ -20,8 +20,22 @@ Claude Apple Notes integration. An MCP server that lets Claude read, create, and
 
 2. Configure your Claude client:
 
-   **Claude Code** - from the project directory, ask Claude:
-   > Add the apple-notes MCP server from this project to your global config
+   **Option A:** From the project directory, ask Claude Code:
+   > Add the apple-notes MCP server from this project to Claude Code and Claude Desktop configs
+
+   **Option B:** Manual configuration:
+
+   **Claude Code** - add to `~/.claude/mcp.json`:
+   ```json
+   {
+     "mcpServers": {
+       "apple-notes": {
+         "command": "python3",
+         "args": ["/path/to/macos-notes-mcp/mcp_server/server.py"]
+       }
+     }
+   }
+   ```
 
    **Claude Desktop** - add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
    ```json
