@@ -53,9 +53,12 @@ Claude Apple Notes integration. An MCP server that lets Claude read, create, and
 
 Once configured, ask Claude:
 - "List my Apple Notes"
-- "Read my Shopping List note"
-- "Add eggs to my Shopping List note"
 - "Create a new note called Meeting Notes"
+- "Analyze ideas in my Ideas note and add pros and cons for them"
+- "Assign priority to items in my Project Backlog note"
+- "Correct grammar in my Project Backlog note"
+- "Tell me which exercises I did this Mon and Tue in my Journal note"
+- "Add eggs to my Shopping List note"
 
 ## Tools
 
