@@ -1,4 +1,4 @@
-# macos-notes-mcp
+# notes-text-mcp
 
 Claude Apple Notes integration. An MCP server that lets Claude read, create, and edit your Apple Notes.
 
@@ -13,25 +13,25 @@ Claude Apple Notes integration. An MCP server that lets Claude read, create, and
 
 1. Clone and install:
    ```bash
-   git clone https://github.com/nickholub/macos-notes-mcp.git
-   cd macos-notes-mcp
+   git clone https://github.com/nickholub/notes-text-mcp.git
+   cd notes-text-mcp
    pip install -e .
    ```
 
 2. Configure your Claude client:
 
    **Option A:** From the project directory, ask Claude Code:
-   > Add the apple-notes MCP server from this project to Claude Code and Claude Desktop configs
+   > Add the notes-text MCP server from this project to Claude Code and Claude Desktop configs
 
    **Option B:** Manual configuration:
 
-   **Claude Code** - add to `~/.claude/mcp.json`:
+   **Claude Code** - add to `~/.claude/.mcp.json`:
    ```json
    {
      "mcpServers": {
-       "apple-notes": {
+       "notes-text": {
          "command": "python3",
-         "args": ["/path/to/macos-notes-mcp/mcp_server/server.py"]
+         "args": ["/path/to/notes-text-mcp/mcp_server/server.py"]
        }
      }
    }
@@ -41,9 +41,9 @@ Claude Apple Notes integration. An MCP server that lets Claude read, create, and
    ```json
    {
      "mcpServers": {
-       "apple-notes": {
+       "notes-text": {
          "command": "python3",
-         "args": ["/path/to/macos-notes-mcp/mcp_server/server.py"]
+         "args": ["/path/to/notes-text-mcp/mcp_server/server.py"]
        }
      }
    }
@@ -90,11 +90,11 @@ pytest
 │   Claude    │ ◄──────────────► │  server.py  │ ◄──────────────► │ osascript │
 │   (Client)  │                   │  (FastMCP)  │                  │           │
 └─────────────┘                   └─────────────┘                  └─────┬─────┘
-                                                                         │
-                                                                         │ AppleScript
-                                                                         ▼
-                                                                   ┌───────────┐
-                                                                   │   Apple   │
-                                                                   │   Notes   │
-                                                                   └───────────┘
+                                                                        │
+                                                                        │ AppleScript
+                                                                        ▼
+                                                                  ┌───────────┐
+                                                                  │   Apple   │
+                                                                  │   Notes   │
+                                                                  └───────────┘
 ```

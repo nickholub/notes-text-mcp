@@ -9,7 +9,7 @@ Does NOT support deleting or other destructive operations.
 import subprocess
 from mcp.server.fastmcp import FastMCP
 
-mcp = FastMCP("macos-notes-mcp")
+mcp = FastMCP("notes-text-mcp")
 
 
 def _escape_applescript(value: str) -> str:
