@@ -1,5 +1,10 @@
 # notes-text-mcp
 
+![macOS](https://img.shields.io/badge/macOS-blue)
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB)
+![MCP](https://img.shields.io/badge/MCP-server-8A2BE2)
+![License](https://img.shields.io/badge/license-MIT-green)
+
 Claude Apple Notes integration. An MCP server that lets Claude read, create, and edit your Apple Notes.
 
 ## Requirements
